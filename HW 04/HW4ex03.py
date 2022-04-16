@@ -28,8 +28,8 @@ def format_ingredients(items):
         answer = answer + items[(len(items)-2)] + ' и ' + items[(len(items)-1)]
         return answer  
 
-#ingredients = ['яйца 2шт', 'сахар 1 л.', 'соль 1 чл.', 'уксус', 'test']
-ingredients = ['яйца 2шт']
+ingredients = ['яйца 2шт', 'сахар 1 л.', 'соль 1 чл.', 'уксус', 'test']
+#ingredients = ['яйца 2шт']
 
 #print(ingredients)
 
