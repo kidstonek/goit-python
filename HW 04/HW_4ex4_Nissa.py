@@ -9,3 +9,10 @@ def get_description(key):
 
 
 print(get_description("B"))
+
+"""
+Roman  1 д. назад
+get(key[, default]) — не вызывает исключения, если ключа нет в словаре, возвращает default, по умолчанию default=None
+grade = grade_dict.get(key, None)
+    return grade
+"""

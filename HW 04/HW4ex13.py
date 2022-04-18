@@ -10,23 +10,46 @@
 
 """
 from pathlib import Path
-from tkinter import Y
+
+
+def parse_folder_old(path):
+    files = []
+    folders = []
+    for i in path.iterdir():
+        files.append(i.name)
+    for i in path.parts:
+        """if i == path.drive:
+            break"""
+    folders.append(i)
+    x = (files, folders)
+            
+    return x
 
 def parse_folder(path):
     files = []
     folders = []
-    for i in p.iterdir():
-        files.append(i.name)
+    for i in path.iterdir():
+        if i.is_dir() == True:
+            print(f'папка {i.name}')
+            folders.append(i.name)
+        else:
+            files.append(i.name)
+            print(f'файл - {i.name}')
+    x = (files, folders)
             
+    return x
+
+p = Path('D:\\Files to delete\\Счета\\Vodafone\\2022')
+print(parse_folder(p))
+#ttt = []
+
+# Идем по папке и проверяем это каталог или папка
+"""for i in p.iterdir():
+    if i.is_dir() == True:
+        print(f'папка {i.name}')
+    else:
+        print(f'файл - {i.name}')"""
     
-            
-    return files, folders
-
-p = Path('C:\\Users\\ava\\Downloads')
-#print(parse_folder(p))
-ttt = []
-
-
 
 #вывод файлов в папке Path
 """for i in p.iterdir():
@@ -34,13 +57,11 @@ ttt = []
     print(i.name)
 print(ttt)"""
 
-print(p, p.parent)
-y = p.parent
-print(y, y.parent)
-x = y.parent
-print(x, x.parent)
-y = x.parent
-print(y, y.parent)
+"""for i in p.parts:
+    ttt.append(i)
+
+print(ttt)"""
+
 """for i in p.iterdir():
     ttt.append(i)
     #print(i.parents)
