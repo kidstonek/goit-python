@@ -48,7 +48,26 @@ for key_s, value_s in student_s.items():
  """ 
  ################################
  # 
-print('|{:^10}|{:^10}|{:^10}|'.format('decimal','hex', 'binary'))
+"""print('|{:^10}|{:^10}|{:^10}|'.format('decimal','hex', 'binary'))
 for i in range(16):
   s = "|{0:<10d}|{0:^10x}|{0:>10b}|".format(i)
-  print(s)
+  print(s)"""
+
+"""import re
+sttr = 'python'
+p = re.sub(sttr, '***', 'blue python and Python shoes', re.IGNORECASE)
+
+print(p)"""
+"""
+#ищет слова и заменяет их в строке на количество точек
+import re
+spam = ['began', 'Python', 'and']
+search_str = 'Guido van Rossum began working on Python in the late 1980s, as a successor to the ABC programming PYTHOn language, and first released pYthoN it in 1991 as Python 0.9.0. pythOn'
+for q in spam:
+    x = re.findall(q, search_str, re.IGNORECASE)
+    for i in x:
+      print(i)
+      xc = i
+      p = re.sub(xc, len(xc) * '*', search_str)
+      search_str = p
+print(p)"""
