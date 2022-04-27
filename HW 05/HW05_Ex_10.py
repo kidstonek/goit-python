@@ -51,7 +51,7 @@ def find_word(text, word):
         answer['result'] = True
         #<re.Match object; span=(34, 40), match='Python'>
         answer['first_index'] = find_result.span()[0]
-        answer['last_index'] = find_result.span()[1]
+        answer['last_index'] = find_result.span()[1] # или find_result.end()
         answer['search_string'] = word
         answer['string'] = text
 
