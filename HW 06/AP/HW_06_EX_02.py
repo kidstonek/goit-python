@@ -1,0 +1,42 @@
+"""
+В компании существует несколько отделов. Список сотрудников для каждого отдела имеет такой вид:
+
+['Robert Stivenson,28', 'Alex Denver,30']
+
+Это список строк с фамилией и возрастом сотрудника, разделенными запятыми.
+
+Реализуйте функцию записи данных о сотрудниках компании в файл, чтобы информация о каждом сотруднике начиналась с новой строки.
+
+Функция записи в файл write_employees_to_file(employee_list, path), где:
+
+path - путь к файлу.
+employee_list - список со списками сотрудников по каждому отделу, как в примере ниже:
+
+[['Robert Stivenson,28', 'Alex Denver,30'],['Drake Mikelsson,19']]
+
+Требования:
+
+запишите содержимое employee_list в файл, используя режим "w".
+мы пока не используем менеджер контекста with
+каждый сотрудник должен быть записан с новой строки — т.е для предыдущего списка содержимое файла должно быть следующим:
+
+Robert Stivenson,28
+Alex Denver,30
+Drake Mikelsson,19
+"""
+
+def write_employees_to_file(employee_list, path):
+    fh = open(path, 'w')
+    for i in employee_list:
+        for b in i:
+            fh.write(str(b) + '\n')
+        #
+    fh.close()
+    
+    
+
+
+emp_list = [['Robert Stivenson,28', 'Alex Denver,30'],['Drake Mikelsson,19']]
+path = ('D:\Code\PY\goit-python\HW 06\AP\employees.txt')
+
+write_employees_to_file(emp_list, path)
