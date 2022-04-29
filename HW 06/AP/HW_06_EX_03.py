@@ -30,5 +30,5 @@ def read_employees_from_file(path):
     fh.close()
     return employees_list
 
-path = ('D:\Code\PY\goit-python\HW 06\AP\employees.txt')
+path = ('D:\Code\PY\goit-python\HW 06\AP\Files\employees.txt')
 print(read_employees_from_file(path))

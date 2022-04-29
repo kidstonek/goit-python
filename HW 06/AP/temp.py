@@ -1,6 +1,21 @@
-
-
 """
+
+try:
+        with open(path, 'r') as fh:
+            
+                  
+            
+    except OSError as err:
+        print(f'Ошибка доступа к файлу: {err}')
+
+    finally:
+        print('ВсЙО бєнч')
+        fh.close()  
+
+
+
+
+
 strr = 'Nikita Borisenko,2000'
 
 tmp_dig = ''
@@ -15,10 +30,94 @@ for i in strr:
 #answer = answer + int(tmp_dig)
 print(tmp_dig)    """
 
-emp_list = [['Robert Stivenson,28', 'Alex Denver,30'],['Drake Mikelsson,19']]
+### for 4 ex
+"""emp_list = [['Robert Stivenson,28', 'Alex Denver,30'],['Drake Mikelsson,19']]
 
 for i in emp_list:
     #if type(i) == list:
         for k in i:
             print(k)
-        
+        """
+
+### for 5 ex
+"""
+test_cat = '60b90c4613067a15887e1ae5,Tessi,5'
+
+print(test_cat.split(','))
+
+for i in test_cat.split(','):
+    print(i)
+
+a = []
+b = {"id": "60b90c1c13067a15887e1ae1", "name": "Tayson", "age": "3"}
+c = {"id": "60b90c2413067a15887e1ae2", "name": "Vika", "age": "1"}
+
+a.append(b)
+a.append(c)
+print(a)
+
+#for ex 6
+
+ttt = {}
+if ttt == {}:
+    print( "Пусто")
+    """
+# for ex 7
+"""
+sss = 'Drake Miel, 24'
+return_s = ''
+
+for i in sss:
+    if i in '1234567890':
+        continue
+    else:
+        return_s = i + return_s
+print(return_s[::-1])
+"""
+
+# for 8
+students_list = [
+    {
+        "name": "Kovalchuk Oleksiy",
+        "specialty": 301,
+        "math": 175,
+        "lang": 180,
+        "eng": 155,
+    },
+    {
+        "name": "Ivanchuk Boryslav",
+        "specialty": 101,
+        "math": 135,
+        "lang": 150,
+        "eng": 165,
+    },
+    {
+        "name": "Karpenko Dmitro",
+        "specialty": 201,
+        "math": 155,
+        "lang": 175,
+        "eng": 185,
+    },
+]
+one_st =     {
+        "name": "Karpenko Dmitro",
+        "specialty": 201,
+        "math": 155,
+        "lang": 175,
+        "eng": 185,
+    }
+
+listt = []
+string_st = ''
+for i in students_list:
+    string_st = ''
+    for k, v in i.items():
+        if k == 'eng':
+            print('Fucking eng!')
+            string_st += str(v)
+        else:
+            string_st += str(v) + ', '
+        #print(v)
+    listt.append(string_st)
+    #print(string_st)
+print(listt)

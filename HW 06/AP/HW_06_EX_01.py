@@ -33,5 +33,5 @@ def total_salary(path):
     return float(salary)
 
 
-path = ('D:\Code\PY\goit-python\HW 06\AP\salary.txt')
+path = ('D:\Code\PY\goit-python\HW 06\AP\Files\salary.txt')
 print(total_salary(path))

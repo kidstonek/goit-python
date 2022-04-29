@@ -19,7 +19,7 @@ def add_employee_to_file(record, path):
     fh.close()
     
 
-path = ('D:\Code\PY\goit-python\HW 06\AP\employees_add.txt')
-employee = 'Drake Mikel, 24'
+path = ('D:\Code\PY\goit-python\HW 06\AP\Files\employees_add.txt')
+employee = 'Drake Miel, 24'
 
 add_employee_to_file(employee, path)

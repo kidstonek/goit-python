@@ -37,6 +37,6 @@ def write_employees_to_file(employee_list, path):
 
 
 emp_list = [['Robert Stivenson,28', 'Alex Denver,30'],['Drake Mikelsson,19']]
-path = ('D:\Code\PY\goit-python\HW 06\AP\employees.txt')
+path = ('D:\Code\PY\goit-python\HW 06\AP\Files\employees.txt')
 
 write_employees_to_file(emp_list, path)
