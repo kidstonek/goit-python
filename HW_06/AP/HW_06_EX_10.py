@@ -24,7 +24,7 @@ def save_credentials_users(path, users_info):
             code_str = ''
             for u_key, u_val in users_info.items():
                 code_str = u_key + ':' + u_val + '\n'
-                fh.write(code_str.encode('utf-16'))
+                fh.write(code_str.encode())
                 
 
     except OSError as err:
@@ -32,7 +32,7 @@ def save_credentials_users(path, users_info):
 
     finally:
             print('The file will be close')
-            fh.close() 
+            #fh.close()  - with само закрыло файл не пропускало по-этому
     ...
 
 path_o = ('D:\Code\PY\goit-python\HW_06\AP\Files\\user_pass_10.bin')
