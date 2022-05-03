@@ -139,7 +139,7 @@ for u_key, u_val in users_info.items():
     print(u_key + ':' + u_val)
 """
 
-x = input()
+"""x = input()
 
 elements = x.split()
 if elements.count(x) == 1:
@@ -149,4 +149,44 @@ else:
     print(x[0])
 
 #print(elements.count(x))
-#print(elements[::-1])
+#print(elements[::-1])"""
+
+
+"""x = int(input()) 
+#your code goes here
+answer=[i*(5*3) for i in range(x) if i*(5*3) < x]
+
+
+print(answer)
+
+evens=[i**2 for i in range(10) if i**2 % 2 == 0]
+print(evens)"""
+
+"""name = input()
+age = int(input())
+
+#your code goes here
+print('{name} is {age} years old'.format(name = name, age = age))"""
+
+import re
+
+CYRILLIC_SYMBOLS = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяєіїґ'
+TRANSLATION = ("a", "b", "v", "g", "d", "e", "e", "j", "z", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u",
+               "f", "h", "ts", "ch", "sh", "sch", "", "y", "", "e", "yu", "u", "ja", "je", "ji", "g")
+
+TRANS = {}
+for c, l in zip(CYRILLIC_SYMBOLS, TRANSLATION):
+    TRANS[ord(c)] = l
+    TRANS[ord(c.upper())] = l.upper()
+
+def normalize(name: str) -> str:  
+    p_name= name.translate(TRANS)
+    t_name = name.translate(TRANS)
+    p_name = re.findall(r'^[^.]+', p_name)
+    p_name = re.sub(r'\W', '_', p_name[0])
+    t_name = re.sub(r'^[^.]+', '', t_name)
+    return p_name + t_name
+
+file_name = 'te!#,а%$424ва.py'
+
+print(normalize(file_name))
