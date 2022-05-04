@@ -78,5 +78,5 @@ def get_recipe(path, search_id):
             return recipe
 
 
-path = ('D:\Code\PY\goit-python\HW 06\AP\Files\ingredients.txt')
+path = ('D:\Code\PY\goit-python\HW_06\AP\Files\ingredients.txt')
 print(get_recipe(path, "60b90c3b13067a15887e1ae7"))

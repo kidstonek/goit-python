@@ -43,8 +43,8 @@ def sanitize_file(source, output):
 
     
 
-path_s = ('D:\Code\PY\goit-python\HW 06\AP\Files\\test_07.txt')
-path_o = ('D:\Code\PY\goit-python\HW 06\AP\Files\ex_07_output.txt')
+path_s = ('D:\Code\PY\goit-python\HW_06\AP\Files\\test_07.txt')
+path_o = ('D:\Code\PY\goit-python\HW_06\AP\Files\ex_07_output.txt')
 
 sanitize_file(path_s, path_o)
 

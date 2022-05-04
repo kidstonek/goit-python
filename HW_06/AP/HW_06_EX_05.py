@@ -53,7 +53,7 @@ def get_cats_info(path):
         fh.close()    
     return cat_data
  
-path = ('D:\Code\PY\goit-python\HW 06\AP\Files\cats.txt')
+path = ('D:\Code\PY\goit-python\HW_06\AP\Files\cats.txt')
 print(get_cats_info(path))
 
 
