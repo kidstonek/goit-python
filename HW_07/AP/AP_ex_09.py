@@ -39,7 +39,7 @@ def sorting_list(list_for_sort:list) -> list:
         
 
 def main():
-   input_list = []
+   input_list = [1, 2, 3]
    print(all_sub_lists(input_list))
    #print(sorting_list(sort_test))
 

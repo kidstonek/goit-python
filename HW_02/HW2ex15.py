@@ -7,7 +7,7 @@ operator = None
 wait_for_number = True
 
 while True:
-    tmp = input('введи что-то ,мудила: ')
+    tmp = input('введи что-то, мудила: ')
     if wait_for_number == True:
         if tmp == '=':
             print(f'Result: ', result)

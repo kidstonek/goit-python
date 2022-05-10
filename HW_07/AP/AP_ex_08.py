@@ -34,17 +34,19 @@ def token_parser(s):
             all_in_one.append(ln)
         else:
             if ln.isdigit() == False:
-                dig = ''
+              dig = ''  
             for ch in ln:
+                
                 if ch in ('()*/-+'):
                     if dig != '':
                         all_in_one.append(dig) 
+                        dig = ''
                     all_in_one.append(ch)
                     continue
                 if ch not in ('()*/-+'):
                     dig = dig + ch
                     continue
-        if dig != '' and dig not in all_in_one:
+        if dig != '':
             all_in_one.append(dig)
     for token_element in s:
         element_parser(token_element)
@@ -52,8 +54,14 @@ def token_parser(s):
 
 
 def main():
-   lex_string = '(2+ 3) *4 - 5 * 3' 
+   lex_string = '2+ 34 -5 * 34 +14 -14' 
    print(token_parser(lex_string))
 
 if __name__ == '__main__':
     main()
+
+
+"""
+def token_parser(s):
+   return re.findall(r'\d+|[\(\)+\-*/]', s)
+"""
