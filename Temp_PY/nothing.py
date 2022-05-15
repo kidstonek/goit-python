@@ -1,5 +1,6 @@
+from datetime import date, datetime
 import re
-x = {
+"""x = {
     "name": "useful",
     "version": "1",
     "description": "Very useful code",
@@ -8,7 +9,7 @@ x = {
     "author_email": "flyingcircus@example.com",
     "license": "MIT",
     "packages": ["useful"],
-}
+}"""
 """p = re.sub(r':', ' =', str(x))
 print(x)
 print(p)"""
@@ -26,14 +27,14 @@ s = 'ballz '
 
 print(s.lstrip())"""
 
-data = ['X', 'X', 'X', 'Y']
+"""data = ['X', 'X', 'X', 'Y']
 kol_vo = 0
 for i in range(len(data)):
     el = data[i]
    
     kol_vo += 1
 print(kol_vo)
-
+"""
 
 
 
@@ -45,3 +46,11 @@ print(kol_vo)
 
 print(factorial(4))"""
 
+cats_in = [
+    {"nickname": "Mick", "age": 5, "owner": "Sara"},
+    {"nickname": "Barsik", "age": 7, "owner": "Olga"},
+    {"nickname": "Simon", "age": 3, "owner": "Yura"},
+]
+
+for i in cats_in:
+    print(i)
