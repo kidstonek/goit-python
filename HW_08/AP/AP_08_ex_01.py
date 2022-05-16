@@ -12,18 +12,17 @@ datetime принимает аргументы типа int, используй�
 
 """
 
-
-
 from datetime import datetime
 
 
-def get_days_from_today(date:str):
+def get_days_from_today(date: str):
     current_datetime = datetime.now()
     data_strip = date.split("-")
     str_date = datetime(year=int(data_strip[0]), month=int(data_strip[1]), day=int(data_strip[2]))
     print(str_date)
 
     return (current_datetime - str_date).days
+
 
 def main():
     dat = '2021-10-09'
