@@ -44,13 +44,10 @@ birthdays_list = [
         "name": "James", "birthday": "1979-05-16"
     },
     {
-        "name": "Olga", "birthday": "2002-05-17"
+        "name": "Olga", "birthday": "2002-05-16"
     },
     {
-        "name": "Helga", "birthday": "2002-05-17"
-    },
-    {
-        "name": "Tetiana", "birthday": "1999-05-20"
+        "name": "Tetiana", "birthday": "1999-05-21"
     },
     {
         "name": "Vika", "birthday": "1990-05-18"
@@ -66,9 +63,9 @@ def sort_week(week_dict: dict):  # сортируем список по дням
         for days_k, names_v in week_dict.items():
             if day == days_k:
                 if days_k == 'Saturday' or days_k == 'Sunday':
-                    weekends_guys = weekends_guys + ' ' + names_v.replace(' ', ', ')
+                    weekends_guys = weekends_guys + ' ' + names_v
                     continue
-                sorted_dict[day] = names_v.replace(' ', ', ')
+                sorted_dict[day] = names_v
             if weekends_guys != '':
                 sorted_dict['next Monday'] = weekends_guys.lstrip()
     return print_answer(sorted_dict)
@@ -91,7 +88,7 @@ def needed_month(colleagues_list):  # коллеги с датами у кото
 
 def print_answer(answer_dict: dict):   #печать ответа
     for k, v in answer_dict.items():
-        print(k+':', v)
+        print(k, v)
 
 
 def all_b_days_in_week(birthday_dict): # список всех у кого ДР на неделе по дням
