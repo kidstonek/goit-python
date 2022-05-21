@@ -1,57 +1,65 @@
 """
-В модуле 5 мы писали функцию sanitize_phone_number для нормализации строки с телефонным номером. Напомним,
-что при получении строк
-    "    +38(050)123-32-34",
-    "     0503451234",
-    "(050)8889900",
-    "38050-111-22-22",
-    "38050 111 22 11   ",
+Бот принимает команды:
+"hello", отвечает в консоль "How can I help you?"
 
-Мы получали следующий вывод:
+"add ...". По этой команде бот сохраняет в памяти (в словаре например) новый контакт. Вместо ... пользователь вводит
+имя и номер телефона, обязательно через пробел.
 
-380501233234
-0503451234
-0508889900
-380501112222
-380501112211
+"change ..." По этой команде бот сохраняет в памяти новый номер телефона для существующего контакта.
+Вместо ... пользователь вводит имя и номер телефона, обязательно через пробел.
 
-Представьте, что в другом месте программы у нас появилось требование сделать вывод в формате
+"phone ...." По этой команде бот выводит в консоль номер телефона для указанного контакта.
+Вместо ... пользователь вводит имя контакта, чей номер нужно показать.
 
-+380501233234
-+380503451234
-+380508889900
-+380501112222
-+380501112211
+"show all". По этой команде бот выводит все сохраненные контакты с номерами телефонов в консоль.
 
-В этом случае идеально подойдет создание декоратора для функции sanitize_phone_number. Декоратор должен добавлять для
-коротких номеров префикс +38, а для полного международного номера (из 12 символом) — только знак +.
-Реализуйте декоратор format_phone_number для функции sanitize_phone_number с необходимым функционалом.
+"good bye", "close", "exit" по любой из этих команд бот завершает свою роботу после того,
+как выведет в консоль "Good bye!".
 """
 
+MY_PHONEBOOK = {}
 
-def format_phone_number(func):
-    if len(func) < 12:
-        return '+38' + func
-    if len(func) == 12:
-        return '+' + func
 
-@format_phone_number
-def sanitize_phone_number(phone):
-    new_phone = (
-        phone.strip()
-            .removeprefix("+")
-            .replace("(", "")
-            .replace(")", "")
-            .replace("-", "")
-            .replace(" ", "")
-    )
-    return new_phone
+def input_error(in_func):
+    def wrapper(*args):
+        try:
+            check = in_func(*args)
+        except (KeyError, IndexError, ValueError, TypeError):
+            return "Enter user name"
+    return wrapper
+
+
+def handler_adder(add_string: str):
+    MY_PHONEBOOK[str(add_string.split(' ')[1])] = str(add_string.split(' ')[2])
+
+
+def handler_changer(change_string: str):
+    MY_PHONEBOOK[str(change_string.split(' ')[1])] = str(change_string.split(' ')[2])
+
+
+def handler_phone_show(phone_show_string: str):
+    return MY_PHONEBOOK[str(phone_show_string.split(' ')[1])]
 
 
 def main():
-    ...
+    while True:
+        tmp = input('Please input command: ')
+        if tmp.lower() == 'good bye' or tmp.lower() == 'close' or tmp.lower() == 'exit':
+            print("Good bye!")
+            break
+        elif tmp.lower() == 'hello':
+            print('How can I help you?')
+        elif tmp.lower() == 'show all':
+            print(MY_PHONEBOOK)
+        elif tmp.lower().split(' ')[0] == 'add':
+            handler_adder(tmp)
+        elif tmp.lower().split(' ')[0] == 'change':
+            handler_changer(tmp)
+        elif tmp.lower().split(' ')[0] == 'phone':
+            print(handler_phone_show(tmp))
+        else:
+            print('There is no such a command. Please try again')
 
 
-
-if __name__ == '__main__':
+if '__main__' == __name__:
     main()

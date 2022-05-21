@@ -137,7 +137,7 @@ name = 'andrii'
 
 print(name.capitalize())
 
-"""
+
 
 data_list = [
     {'name': 'Allen Raymond', 'email': 'nulla.ante@vestibul.co.uk',
@@ -152,4 +152,9 @@ data_list = [
 
 for i in data_list:
     print(i.get('email'))
-    
+    """
+
+test_dict = {'name': 'Wylie Pope', 'email': 'est@utquamvel.net',
+             'phone': '(692) 802-2949', 'favorite': False}
+
+print(test_dict['email'])
