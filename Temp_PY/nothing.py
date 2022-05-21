@@ -1,6 +1,7 @@
 from datetime import date, datetime
 from pstats import SortKey
 import re
+from webbrowser import get
 """x = {
     "name": "useful",
     "version": "1",
@@ -10,15 +11,15 @@ import re
     "author_email": "flyingcircus@example.com",
     "license": "MIT",
     "packages": ["useful"],
-}"""
-"""p = re.sub(r':', ' =', str(x))
+}
+p = re.sub(r':', ' =', str(x))
 print(x)
-print(p)"""
+print(p)
 
-"""for i , v in x.items():
-    print(v)"""
+for i , v in x.items():
+    print(v)
 
-"""stt = "lick my balls you!"
+stt = "lick my balls you!"
 print(stt.find('balls'))
 
 if 'ballz' in stt:
@@ -26,19 +27,19 @@ if 'ballz' in stt:
 
 s = 'ballz '
 
-print(s.lstrip())"""
+print(s.lstrip())
 
-"""data = ['X', 'X', 'X', 'Y']
+data = ['X', 'X', 'X', 'Y']
 kol_vo = 0
 for i in range(len(data)):
     el = data[i]
    
     kol_vo += 1
 print(kol_vo)
-"""
 
 
-"""def factorial(num):
+
+def factorial(num):
     if num == 1:
         return 1
     num = num * factorial(num-1)
@@ -96,7 +97,7 @@ print(sort_week(tmp_dict))
 customers = {"name": "Boris", "discount": 0.15}
 
 print(customers.get("discount"))
-"""
+
 def format_phone_number(func):
     def wrapper(phone):
         result = func(phone)
@@ -121,3 +122,34 @@ def sanitize_phone_number(phone):
 
 
 print(sanitize_phone_number('0503451234'))
+
+
+srtin = "The resulting profit was: from the southern possessions $ 100 , from the northern colonies $500, and the king gave $1000."
+
+bb = srtin.replace('.', '').replace(',', '').replace('$', '').split()
+print(bb)
+for i in bb:
+    if i.isdigit():
+        print(type(i))
+
+
+name = 'andrii'
+
+print(name.capitalize())
+
+"""
+
+data_list = [
+    {'name': 'Allen Raymond', 'email': 'nulla.ante@vestibul.co.uk',
+     'phone': '(992) 914-3792', 'favorite': False},
+    {'name': 'Chaim Lewis', 'email': 'dui.in@egetlacus.ca',
+     'phone': '(294) 840-6685', 'favorite': False},
+    {'name': 'Kennedy Lane', 'email': 'mattis.Cras@nonenimMauris.net', 'phone': '(542) 451-7038',
+     'favorite': False},
+    {'name': 'Wylie Pope', 'email': 'est@utquamvel.net',
+     'phone': '(692) 802-2949', 'favorite': False},
+    {'name': 'Cyrus Jackson', 'email': 'nibh@semsempererat.com', 'phone': '(501) 472-5218', 'favorite': False}]
+
+for i in data_list:
+    print(i.get('email'))
+    

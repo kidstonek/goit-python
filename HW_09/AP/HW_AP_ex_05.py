@@ -26,6 +26,7 @@
 
 """
 
+
 def format_phone_number(func):
     def wrapper(phone):
         result = func(phone)
@@ -50,7 +51,6 @@ def sanitize_phone_number(phone):
 
 
 def main():
-
 
     print(sanitize_phone_number('0503451234'))
 
