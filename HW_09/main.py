@@ -24,21 +24,45 @@ def input_error(in_func):
     def wrapper(*args):
         try:
             check = in_func(*args)
-        except (KeyError, IndexError, ValueError, TypeError):
-            return "Enter user name"
+            print(check)
+        except KeyError:
+            return print('There is no such a contact. Please try again')
+        except IndexError:
+            return print('Give me name and phone please')
+        except ValueError:
+            return print('ValueError')
+        except TypeError:
+            return print('TypeError')
     return wrapper
 
 
+@input_error
 def handler_adder(add_string: str):
+    tmp = str(add_string.split(' ')[1])
+    for i in filter(lambda x: bool(x == tmp), MY_PHONEBOOK.keys()):
+        return "Such a name already exists. Please try again"
+    if str(add_string.split(' ')[1]).isdigit() or str(add_string.split(' ')[1]) == '':
+        return "Incorrect user name. Try again"
+    if not str(add_string.split(' ')[2]).isdigit() or str(add_string.split(' ')[2]).isdigit() == '':
+        return "Incorrect phone number. Try again"
     MY_PHONEBOOK[str(add_string.split(' ')[1])] = str(add_string.split(' ')[2])
+    return 'Contact ' + str(add_string.split(' ')[1]) + ' was added with phone number ' + str(add_string.split(' ')[2])
 
 
+@input_error
 def handler_changer(change_string: str):
+    if str(change_string.split(' ')[1]).isdigit() or str(change_string.split(' ')[1]) == '':
+        return "Incorrect user name. Try again"
+    if not str(change_string.split(' ')[2]).isdigit() or str(change_string.split(' ')[2]).isdigit() == '':
+        return "Incorrect phone number. Try again"
     MY_PHONEBOOK[str(change_string.split(' ')[1])] = str(change_string.split(' ')[2])
+    return 'The phone number for contact ' + str(change_string.split(' ')[1]) + ' was changed'
 
 
+@input_error
 def handler_phone_show(phone_show_string: str):
-    return MY_PHONEBOOK[str(phone_show_string.split(' ')[1])]
+    return 'The phone number for ' + str(phone_show_string.split(' ')[1]) + ' is ' \
+           + MY_PHONEBOOK[str(phone_show_string.split(' ')[1])]
 
 
 def main():
@@ -56,7 +80,7 @@ def main():
         elif tmp.lower().split(' ')[0] == 'change':
             handler_changer(tmp)
         elif tmp.lower().split(' ')[0] == 'phone':
-            print(handler_phone_show(tmp))
+            handler_phone_show(tmp)
         else:
             print('There is no such a command. Please try again')
 
