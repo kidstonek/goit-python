@@ -157,4 +157,15 @@ for i in data_list:
 test_dict = {'name': 'Wylie Pope', 'email': 'est@utquamvel.net',
              'phone': '(692) 802-2949', 'favorite': False}
 
-print(test_dict['email'])
+
+t_dict = {'asdsa': '213123', 'asdssa': 'asd', 'A': '2312312', 'B': '123123123'}
+a = 'A'
+for k in t_dict.keys():
+    if k == a:
+        print('ohh way')
+        break
+
+for i in filter(lambda x: bool(x == a) == False, t_dict.keys()):
+    print(f'{i} = a')
+
+
