@@ -1,6 +1,7 @@
 from datetime import date, datetime
 from pstats import SortKey
 import re
+from unicodedata import name
 from webbrowser import get
 """x = {
     "name": "useful",
@@ -152,7 +153,7 @@ data_list = [
 
 for i in data_list:
     print(i.get('email'))
-    """
+    
 
 test_dict = {'name': 'Wylie Pope', 'email': 'est@utquamvel.net',
              'phone': '(692) 802-2949', 'favorite': False}
@@ -169,3 +170,76 @@ for i in filter(lambda x: bool(x == a) == False, t_dict.keys()):
     print(f'{i} = a')
 
 
+names = ["David", "John", "Annabelle", "Johnathan", "Veronica"]
+
+#your code goes here
+
+for i in names:
+    if len(i) > 5:
+        print(i)
+
+answer_list = []
+for i in filter(lambda x: len(x) > 5, names):
+    answer_list.append(i)
+
+print(answer_list, end='')
+
+
+txt = 'This is some text'
+
+
+def words(txt):
+    bb = txt.split(' ')
+    #your code goes here
+    for i in range(len(bb)):
+        yield bb[i]
+
+
+print(list(words(txt)))
+
+
+text = 'some text'
+
+
+def uppercase_decorator(func):
+    def wrapper(text):
+        # your code goes here
+        ts = str(text.upper())
+        return ts
+    return wrapper
+
+
+@uppercase_decorator
+def display_text(text):
+    return(text)
+
+
+print(display_text(text))
+
+
+sqs = [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+print(sqs[1::4])
+
+
+
+def fib(x):
+    if x == 0 or x == 1:
+        return 1
+    else:
+        return fib(x-1) + fib(x-2)
+
+
+print(fib(4))
+
+
+a = {'a', 'b', 'c'}
+b = {'c', 'd', 'e'}
+print(a & b)
+
+
+nums = {1, 2, 3, 4, 5, 6}
+nums = {0, 1, 2, 3} & nums
+print(nums)
+nums = filter(lambda x: x > 1, nums)
+print(len(list(nums)))
+"""
