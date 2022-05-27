@@ -1,8 +1,4 @@
-from datetime import date, datetime
-from pstats import SortKey
-import re
-from unicodedata import name
-from webbrowser import get
+
 """x = {
     "name": "useful",
     "version": "1",
@@ -242,4 +238,107 @@ nums = {0, 1, 2, 3} & nums
 print(nums)
 nums = filter(lambda x: x > 1, nums)
 print(len(list(nums)))
+
+
+
+def lookup_key(data, value):
+    new_lang = []
+    for ky_, val_ in data.items():
+        if val_ == value:
+            new_lang.append(ky_)
+
+    return new_lang
+
+print(lookup_key(lookup_key_yo, 3))
+
+newDict = {key: value for (key, value) in dictOfNames.items() if len(value) == 6 }
+
+lookup_key_yo = {'key1': 1, 'key2': 2, 'key3': 3, 'key4': 2}
+
+#answer = dict(filter(lambda x: x[1] == 2, lookup_key_yo.items())).items() # поиск ключа и значения
+
+for i in dict(filter(lambda x: x[1] == 2, lookup_key_yo.items())).keys():
+    print(i)
+
+aa = dict(filter(lambda y: y[0], dict(
+    filter(lambda x: x[1] == 2, lookup_key_yo.items()))))
+
+print(aa)
+
+
+
+for ch in srtin:
+    if ch.isdigit():
+        print(ch, end=' ')
+
+
+srtin = "The resulting profit was: from the southern possessions $ 10, from the northern colonies $50, and the king gave $100."
+for i in filter(lambda x: bool(x.isdigit()), srtin):
+    print(i)
+
+
+def input_number():
+    while True:
+        try:
+            num = input("Enter integer number: ")
+            return int(num)
+        except:
+            print(f'"{num}" is not a number. Try again')
+
+
+num = input_number()
+
+
+def add_id(id_list: list, employee_id: str):
+    if employee_id[:2] != '01':
+        return id_list        
+    else:
+        id_list.append(employee_id)
+        return id_list
+
+iddd = []
+print(add_id(iddd, '01ee'))
+
+
+lookup_key_yo = {'key1': 1, 'key2': 2, 'key3': 3, 'key4': 2}
+
+newDict = {key for (
+    key, value) in lookup_key_yo.items() if  value == 2}
+
+print(newDict)
 """
+
+class Mammal:
+    phrase = ''
+
+    def voice(self):
+        return self.phrase
+
+
+class Dog(Mammal):
+    phrase = 'Bark!'
+
+
+class Cat(Mammal):
+    phrase = 'Meow!'
+
+
+class Chupakabra:
+    def voice(self):
+        return 'Whooooo!!!'
+
+
+class Recorder:
+    def record_animal(self, animal):
+        voice = animal.voice()
+        print(f'Recorded "{voice}"')
+
+
+r = Recorder()
+cat = Cat()
+dog = Dog()
+strange_animal = Chupakabra()
+
+r.record_animal(cat)            # Recorded "Meow!"
+r.record_animal(dog)            # Recorded "Bark!"
+r.record_animal(strange_animal)  # Recorded "Whooooo!!!"
