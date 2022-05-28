@@ -10,6 +10,8 @@
 что он класс Cat.
 
 """
+
+
 class Animal:
     def __init__(self, nickname, weight):
         self.nickname = nickname

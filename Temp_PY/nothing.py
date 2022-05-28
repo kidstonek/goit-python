@@ -306,7 +306,7 @@ newDict = {key for (
     key, value) in lookup_key_yo.items() if  value == 2}
 
 print(newDict)
-"""
+
 
 class Mammal:
     phrase = ''
@@ -342,3 +342,16 @@ strange_animal = Chupakabra()
 r.record_animal(cat)            # Recorded "Meow!"
 r.record_animal(dog)            # Recorded "Bark!"
 r.record_animal(strange_animal)  # Recorded "Whooooo!!!"
+"""
+
+num = 3
+def fibonacci(n):
+    if n <= 1:
+        print(0+n)
+        return 1
+    else:
+        
+        return (fibonacci(n - 1)) + fibonacci(n - 2)
+
+
+fibonacci(num)
