@@ -24,14 +24,15 @@ class Animal:
         self.weight = weight
 
     def change_color(self, some_color: str):
-        self.color = some_color
+        Animal.color = some_color
 
 
 def main():
-    Animal.color = 'red'
     first_animal = Animal('Biba', 15)
     second_animal = Animal("Simon", 10)
-    print(second_animal.color)
+    print(first_animal.color, second_animal.color)
+    first_animal.change_color('blue')
+    print(first_animal.color, second_animal.color)
 
 
 if '__main__' == __name__:
