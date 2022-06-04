@@ -14,6 +14,7 @@ def input_error(in_func):
             return 'ValueError'
         except TypeError:
             return 'TypeError'
+
     return wrapper
 
 
@@ -21,27 +22,40 @@ class Field:
     pass
 
 
-# class Phone(Field):
-#     def __init__(self, value):
-#         self.value = [value]
 class Phone(Field):
     def __init__(self, phone_list):
         self.value = phone_list
-        # for i in range(len(args)):
-        #     self.value.append(args[i])
 
 
 class Name(Field):
     def __init__(self, value):
         self.value = value
 
+
 # Record реализует методы для добавления/удаления/редактирования объектов Phone.
 
 
 class Record:
-    def __init__(self, name: Name, phone=None):
+    def __init__(self, name: Name, *args):
         self.name = name
-        self.phone = phone
+        self.phone = []
+        if args:
+            for i in range(len(args)):
+                self.phone.append(args[i])
+
+    def add_number_to_record(self, phone: Phone):
+        self.phone.append(phone)
+
+    def del_number_from_record(self, phone: Phone):
+        # print(type(self.phone)) erase Rio +23432423
+        for i in self.phone:
+            if i.value == phone.value:
+                self.phone.remove(i)
+
+    def change_number_in_record(self, phone: Phone, phone_new: Phone):
+        for i in self.phone:
+            if i.value == phone.value:
+                self.phone[self.phone.index(i)] = phone_new
 
 
 class AddressBook(UserDict):
@@ -56,26 +70,71 @@ def ex(*args):
     return "Good bye!"
 
 
+# превращаю список телефонов в кортеж обьектов Phone
+@input_error
+def parse_phones(raw__p: list):
+    tmp_p_list = []
+    for i in raw__p:
+        tmp_p = Phone(i)
+        tmp_p_list.append(tmp_p)
+    return tuple(tmp_p_list)
+
+
 @input_error
 def add_to_addressbook(addressbook: AddressBook, *args):
-    print(args)
     if args[0].isdigit():
         return "The contact name should be in letters"
     tmp_name = Name(args[0])
-    tmp_phone1 = Phone(list(args[1:]))
+    tmp_phone1 = parse_phones(list(args[1:]))
     tmp_rec = Record(tmp_name, tmp_phone1)
     addressbook.add_to_addressbook(tmp_name, tmp_rec)
-    return f'Contact {tmp_rec.name.value} with phones {tmp_phone1.value} added successfully'
+    return f'Contact {tmp_rec.name.value} with phones {tmp_phone1} added successfully'
 
 
 @input_error
 def show_addressbook(addressbook: AddressBook, *args):
     for k, v in addressbook.data.items():
-        print(type(v.phone.value))
-        print(k, v.phone.value)
+        phones = ', '.join([str(i.value) for i in v.phone])
+        print(k, phones)
 
 
-COMMANDS = {ex: ["exit", ".", "bye"], show_addressbook: ["show", "s"], add_to_addressbook: ["add"]}
+@input_error
+def find_contact(addressbook: AddressBook, *args):
+    for k, v in addressbook.data.items():
+        if k == args[0]:
+            return k, v.phone
+
+
+@input_error
+def add_phone_to_contact(addressbook: AddressBook, *args):
+    for k, v in addressbook.data.items():
+        if k == args[0]:
+            add_num = Phone(args[1])
+            Record.add_number_to_record(v, add_num)
+            return f'Number {add_num.value} was added'
+
+
+@input_error
+def erase_phone(addressbook: AddressBook, *args):
+    for k, v in addressbook.data.items():
+        if k == args[0]:
+            del_num = Phone(args[1])
+            Record.del_number_from_record(v, del_num)
+            return f'Number {del_num.value} was deleted'
+
+
+def change_phone(addressbook: AddressBook, *args):
+    for k, v in addressbook.data.items():
+        if k == args[0]:
+            ch_num_in = Phone(args[1])
+            ch_num_for = Phone(args[2])
+            Record.change_number_in_record(v, ch_num_in, ch_num_for)
+            return f'Number {ch_num_in.value} was changed to {ch_num_for.value}'
+
+
+COMMANDS = {ex: ["exit", ".", "bye"], show_addressbook: ["show", "s"], add_to_addressbook: ["add"],
+            find_contact: ["find", "f"], add_phone_to_contact: ["ap"], erase_phone: ["erase"],
+            change_phone: ['change', 'ch']}
 
 
 def parse_command(user_input: str):
@@ -95,14 +154,13 @@ def main():
     phone2 = Phone('+6666664')
     phone3 = Phone('+23432423')
 
-    r = Record(name1, phone1)
+    r = Record(name1, phone1, phone3)
     r2 = Record(name2, phone2)
-    r3 = Record(name3, phone3)
-
+    r3 = Record(name3, phone3, phone2)
+    print(r3)
     phone_book.add_to_addressbook(name1, r)
     phone_book.add_to_addressbook(name2, r2)
     phone_book.add_to_addressbook(name3, r3)
-    print(phone_book)
 
     while True:
         tmp = input('Please input command: ')

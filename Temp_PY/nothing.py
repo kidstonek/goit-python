@@ -342,7 +342,7 @@ strange_animal = Chupakabra()
 r.record_animal(cat)            # Recorded "Meow!"
 r.record_animal(dog)            # Recorded "Bark!"
 r.record_animal(strange_animal)  # Recorded "Whooooo!!!"
-"""
+
 
 num = 3
 def fibonacci(n):
@@ -355,3 +355,172 @@ def fibonacci(n):
 
 
 fibonacci(num)
+"""
+
+
+# class Name:
+#     def __init__(self, name) -> None:
+#         self.name = name
+
+
+# class Phone:
+#     def __init__(self, phone=None) -> None:
+#         self.phone = phone
+
+
+# class Record:
+#     def __init__(self) -> None:
+#         self.data = {}
+
+#     def add_item_to_dict(self, name: Name, *args):
+#         self.data[name] = [args[0].phone, args[1].phone]
+#         # if p2 == None:
+#         #     self.data[name] = [phone.phone, 'secondary empty']
+#         # else:
+#         #     self.data[name] = [phone.phone, p2.phone]
+
+#     def show_all(self):
+#         for k, v in self.data.items():
+#             print(k.name, v)
+
+
+# name1 = Name('Alberto')
+# name2 = Name('Dell')
+# name3 = Name('Rio')
+
+# phone1 = Phone('+3232323')
+# phone2 = Phone('+6666664')
+# phone3 = Phone('+23432423')
+
+
+# # print(type(phone1))
+
+# b = Record()
+# b.add_item_to_dict(name1, phone1)
+# b.add_item_to_dict(name2, phone2, phone1)
+# b.add_item_to_dict(name3, phone3)
+
+# b.show_all()
+
+
+from collections import UserDict
+
+
+class Field:
+    pass
+
+
+class Phone(Field):
+    def __init__(self, value):
+        self.value = value
+
+
+class Name(Field):
+    def __init__(self, value):
+        self.value = value
+
+# Record реализует методы для добавления/удаления/редактирования объектов Phone.
+
+
+class Record:
+    def __init__(self, name: Name, *args):
+        self.name = name
+        self.phone = []
+        for i in range(len(args)):
+            self.phone.append(args[i])
+
+
+class AddressBook(UserDict):
+    def __init__(self):
+        self.data = {}
+
+    def add_to_addressbook(self, name: Name, record: Record):
+        self.data[name.value] = record
+
+
+phone_book = AddressBook()
+name1 = Name('Alberto')
+name2 = Name('Dell')
+name3 = Name('Rio')
+
+phone1 = Phone('+3232323')
+phone2 = Phone('+6666664')
+phone3 = Phone('+23432423')
+
+r = Record(name1, phone1, phone2, phone3)
+r2 = Record(name2, phone2)
+r3 = Record(name3, phone3)
+
+phone_book.add_to_addressbook(name1, r)
+phone_book.add_to_addressbook(name2, r2)
+phone_book.add_to_addressbook(name3, r3)
+
+
+def del_number(r: Record, phone3: Phone):
+    return 
+
+
+f_p = Phone('+6666664')
+
+dd = [phone1, phone2, phone3]
+
+for i in dd:
+    print(i.value, end=' ')
+
+for i in dd:
+    if i.value == f_p.value:
+        dd.remove(i)
+    
+print('\n')
+for i in dd:
+    
+    print(i, i.value, end=' ')
+# for k, v in phone_book.items():
+#     print(k, v.phone)
+
+# print(r.name.value, r.phone.value)
+
+
+# a = ('123', '2323')
+# b = list(a)
+# print(b)
+
+# raw_p = list(('+3232323', '+232323' , '+1232313123'))
+
+# def parse_phones(raw__p:list):
+#     tmp_p_list = []
+    
+#     for i in raw_p:
+#         tmp_p = Phone(i)
+#         tmp_p_list.append(tmp_p)
+#     return tmp_p_list
+
+
+# t = parse_phones(raw_p)
+# g = parse_phones(raw_p)
+# print(parse_phones(raw_p))
+
+# b = g.append(phone3)
+# for i in t:
+#     print(i.value)
+# c = t + g 
+
+# for i in c:
+#     print(i.value)
+
+
+# phone2 = Phone('+6666664')
+# for i in range(3):
+#     d.append(phone2)
+#     print(phone2)
+# print(type(d[1]))
+# self.phone = []
+# for i in range(len(args)):
+#     t = Phone(args[i])
+#     self.phone.append(t)
+
+
+# ss = {'1': '2', '2':'23', '4':'12323'}
+
+# print(ss['1'])
+
