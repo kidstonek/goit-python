@@ -93,10 +93,11 @@ def add_to_addressbook(addressbook: AddressBook, *args):
 
 @input_error
 def show_addressbook(addressbook: AddressBook, *args):
+    showing_phone_book = {}
     for k, v in addressbook.data.items():
         phones = ', '.join([str(i.value) for i in v.phone])
-        print(k, phones)
-
+        showing_phone_book[k] = phones
+    return showing_phone_book
 
 @input_error
 def find_contact(addressbook: AddressBook, *args):
@@ -134,7 +135,7 @@ def change_phone(addressbook: AddressBook, *args):
 
 COMMANDS = {ex: ["exit", ".", "bye"], show_addressbook: ["show", "s"], add_to_addressbook: ["add"],
             find_contact: ["find", "f"], add_phone_to_contact: ["ap"], erase_phone: ["erase"],
-            change_phone: ['change', 'ch']}
+            change_phone: ["change", "ch"]}
 
 
 def parse_command(user_input: str):
@@ -145,6 +146,16 @@ def parse_command(user_input: str):
 
 
 def main():
+    print('Welcome to the worst PhoneBook EVER')
+    print('You can use following commands:')
+    print('"show", "s" - to show the whole PhoneBook')
+    print('"add" - to add the contact to the Phone book \\ example: add ContactName Phone \\+ Phone....')
+    print('"ap" - add phone for existing contact \\ example: ap NameOfExistingContact Phone \\+ Phone....')
+    print('"change", "ch" - to update existing phone number for contact \\ example: change '
+          'NameOfExistingContact Phone \\+ Phone....')
+    print('"erase" - to erase existing phone for the contact \\ example: erase NameOfExistingContact '
+          'Phone \\+ Phone....')
+    print('"exit", ".", "bye" - for exit')
     phone_book = AddressBook()
     name1 = Name('Alberto')
     name2 = Name('Dell')
@@ -157,7 +168,7 @@ def main():
     r = Record(name1, phone1, phone3)
     r2 = Record(name2, phone2)
     r3 = Record(name3, phone3, phone2)
-    print(r3)
+
     phone_book.add_to_addressbook(name1, r)
     phone_book.add_to_addressbook(name2, r2)
     phone_book.add_to_addressbook(name3, r3)
