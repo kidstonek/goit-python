@@ -1,4 +1,5 @@
 from collections import UserDict
+from datetime import datetime
 
 
 def input_error(in_func):
@@ -32,22 +33,37 @@ class Name(Field):
         self.value = value
 
 
+class Birthday(Field):
+    def __init__(self, b_date):
+        self.__b_date = None
+        self.b_date = b_date
+
+    @property
+    def b_date(self):
+        return self.__b_date
+
+    @b_date.setter
+    def b_date(self, b_date):
+        if len(b_date) == 10:
+            self.__b_date = b_date
+
+
 # Record реализует методы для добавления/удаления/редактирования объектов Phone.
 
 
 class Record:
-    def __init__(self, name: Name, *args):
+    def __init__(self, name: Name, *args, b_date=None):
         self.name = name
         self.phone = []
         if args:
             for i in range(len(args)):
                 self.phone.append(args[i])
+        self.b_date = b_date
 
     def add_number_to_record(self, phone: Phone):
         self.phone.append(phone)
 
     def del_number_from_record(self, phone: Phone):
-        # print(type(self.phone)) erase Rio +23432423
         for i in self.phone:
             if i.value == phone.value:
                 self.phone.remove(i)
@@ -56,6 +72,28 @@ class Record:
         for i in self.phone:
             if i.value == phone.value:
                 self.phone[self.phone.index(i)] = phone_new
+
+    def days_to_birthday(self, b_day: Birthday = None):
+        current_datetime = datetime.now()
+        birthday_data = b_day.b_date
+        birthday_data_strip = birthday_data.split("-")
+        if int(birthday_data_strip[1]) < current_datetime.month:
+            birthday_data_string = datetime(year=current_datetime.year + 1, month=int(
+                birthday_data_strip[1]), day=int(birthday_data_strip[2]) + 1)
+            return (birthday_data_string - current_datetime).days
+        elif int(birthday_data_strip[1]) == current_datetime.month:
+            birthday_data_string = datetime(year=current_datetime.year, month=int(
+                birthday_data_strip[1]), day=int(birthday_data_strip[2]) + 1)
+            if birthday_data_string < current_datetime:
+                birthday_data_string = datetime(year=current_datetime.year + 1, month=int(
+                    birthday_data_strip[1]), day=int(birthday_data_strip[2]) + 1)
+                return (birthday_data_string - current_datetime).days
+            else:
+                return (birthday_data_string - current_datetime).days
+        else:
+            birthday_data_string = datetime(year=current_datetime.year, month=int(
+                birthday_data_strip[1]), day=int(birthday_data_strip[2]))
+            return (birthday_data_string - current_datetime).days
 
 
 class AddressBook(UserDict):
@@ -85,7 +123,7 @@ def add_to_addressbook(addressbook: AddressBook, *args):
     if args[0].isdigit():
         return "The contact name should be in letters"
     tmp_name = Name(args[0])
-    tmp_phone1 = parse_phones(list(args[1:]))
+    tmp_phone1 = parse_phones(args[1:])
     tmp_rec = Record(tmp_name, tmp_phone1)
     addressbook.add_to_addressbook(tmp_name, tmp_rec)
     return f'Contact {tmp_rec.name.value} with phones {tmp_phone1} added successfully'
@@ -93,13 +131,18 @@ def add_to_addressbook(addressbook: AddressBook, *args):
 
 @input_error
 def show_addressbook(addressbook: AddressBook, *args):
-    showing_phone_book = {}
     for k, v in addressbook.data.items():
-        if type(v.phone[0]) == tuple:
-            v.phone = list(v.phone[0])
-        phones = ', '.join([str(i.value) for i in v.phone])
-        showing_phone_book[k] = phones
-    return showing_phone_book
+        print(k, v.phone)
+    # showing_phone_book = {}
+    # for k, v in addressbook.data.items():
+    #     if isinstance(Birthday, v):
+    #
+    #     if type(v.phone[0]) == tuple:
+    #         v.phone = list(v.phone[0])
+    #     phones = ', '.join([str(i.value) for i in v.phone])
+    #     showing_phone_book[k] = phones
+    # return showing_phone_book
+
 
 @input_error
 def find_contact(addressbook: AddressBook, *args):
@@ -125,7 +168,7 @@ def erase_phone(addressbook: AddressBook, *args):
             Record.del_number_from_record(v, del_num)
             return f'Number {del_num.value} was deleted'
 
-@input_error
+
 def change_phone(addressbook: AddressBook, *args):
     for k, v in addressbook.data.items():
         if k == args[0]:
@@ -135,9 +178,19 @@ def change_phone(addressbook: AddressBook, *args):
             return f'Number {ch_num_in.value} was changed to {ch_num_for.value}'
 
 
+def check_contact_b_day(addressbook: AddressBook, *args, b_day: Birthday = None):
+    for k, v in addressbook.data.items():
+        if k == args[0]:
+            if isinstance(v.phone[-1], Birthday):
+                b_day = v.phone[-1]
+                return Record.days_to_birthday(v, b_day)
+            else:
+                return f'Contact {args[0]} doesnt have a birthday field'
+
+
 COMMANDS = {ex: ["exit", ".", "bye"], show_addressbook: ["show", "s"], add_to_addressbook: ["add"],
             find_contact: ["find", "f"], add_phone_to_contact: ["ap"], erase_phone: ["erase"],
-            change_phone: ["change", "ch"]}
+            change_phone: ["change", "ch"], check_contact_b_day: ["birthday", "bdate", "bd"]}
 
 
 def parse_command(user_input: str):
@@ -157,7 +210,10 @@ def main():
           'NameOfExistingContact Phone \\+ Phone....')
     print('"erase" - to erase existing phone for the contact \\ example: erase NameOfExistingContact '
           'Phone \\+ Phone....')
+    print('"birthday", "bdate", "bd" - to check how many days till next birthday for the contact '
+          '\\ example: ch NameOfExistingContact')
     print('"exit", ".", "bye" - for exit')
+    print("==================================================")
     phone_book = AddressBook()
     name1 = Name('Alberto')
     name2 = Name('Dell')
@@ -167,9 +223,12 @@ def main():
     phone2 = Phone('+6666664')
     phone3 = Phone('+23432423')
 
-    r = Record(name1, phone1, phone3)
+    bdate1 = Birthday('1990-05-18')
+    bdate2 = Birthday('1980-06-09')
+
+    r = Record(name1, phone1, phone3, bdate1)
     r2 = Record(name2, phone2)
-    r3 = Record(name3, phone3, phone2)
+    r3 = Record(name3, phone3, phone2, bdate2)
 
     phone_book.add_to_addressbook(name1, r)
     phone_book.add_to_addressbook(name2, r2)

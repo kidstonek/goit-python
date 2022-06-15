@@ -403,78 +403,78 @@ fibonacci(num)
 # b.show_all()
 
 
-from collections import UserDict
+# from collections import UserDict
 
 
-class Field:
-    pass
+# class Field:
+#     pass
 
 
-class Phone(Field):
-    def __init__(self, value):
-        self.value = value
+# class Phone(Field):
+#     def __init__(self, value):
+#         self.value = value
 
 
-class Name(Field):
-    def __init__(self, value):
-        self.value = value
+# class Name(Field):
+#     def __init__(self, value):
+#         self.value = value
 
-# Record реализует методы для добавления/удаления/редактирования объектов Phone.
-
-
-class Record:
-    def __init__(self, name: Name, *args):
-        self.name = name
-        self.phone = []
-        for i in range(len(args)):
-            self.phone.append(args[i])
+# # Record реализует методы для добавления/удаления/редактирования объектов Phone.
 
 
-class AddressBook(UserDict):
-    def __init__(self):
-        self.data = {}
-
-    def add_to_addressbook(self, name: Name, record: Record):
-        self.data[name.value] = record
-
-
-phone_book = AddressBook()
-name1 = Name('Alberto')
-name2 = Name('Dell')
-name3 = Name('Rio')
-
-phone1 = Phone('+3232323')
-phone2 = Phone('+6666664')
-phone3 = Phone('+23432423')
-
-r = Record(name1, phone1, phone2, phone3)
-r2 = Record(name2, phone2)
-r3 = Record(name3, phone3)
-
-phone_book.add_to_addressbook(name1, r)
-phone_book.add_to_addressbook(name2, r2)
-phone_book.add_to_addressbook(name3, r3)
+# class Record:
+#     def __init__(self, name: Name, *args):
+#         self.name = name
+#         self.phone = []
+#         for i in range(len(args)):
+#             self.phone.append(args[i])
 
 
-def del_number(r: Record, phone3: Phone):
-    return 
+# class AddressBook(UserDict):
+#     def __init__(self):
+#         self.data = {}
+
+#     def add_to_addressbook(self, name: Name, record: Record):
+#         self.data[name.value] = record
 
 
-f_p = Phone('+6666664')
+# phone_book = AddressBook()
+# name1 = Name('Alberto')
+# name2 = Name('Dell')
+# name3 = Name('Rio')
 
-dd = [phone1, phone2, phone3]
+# phone1 = Phone('+3232323')
+# phone2 = Phone('+6666664')
+# phone3 = Phone('+23432423')
 
-for i in dd:
-    print(i.value, end=' ')
+# r = Record(name1, phone1, phone2, phone3)
+# r2 = Record(name2, phone2)
+# r3 = Record(name3, phone3)
 
-for i in dd:
-    if i.value == f_p.value:
-        dd.remove(i)
-    
-print('\n')
-for i in dd:
-    
-    print(i, i.value, end=' ')
+# phone_book.add_to_addressbook(name1, r)
+# phone_book.add_to_addressbook(name2, r2)
+# phone_book.add_to_addressbook(name3, r3)
+
+
+# def del_number(r: Record, phone3: Phone):
+#     return
+
+
+# f_p = Phone('+6666664')
+
+# dd = [phone1, phone2, phone3]
+
+# for i in dd:
+#     print(i.value, end=' ')
+
+# for i in dd:
+#     if i.value == f_p.value:
+#         dd.remove(i)
+
+# print('\n')
+# for i in dd:
+
+# print(i, i.value, end=' ')
 # for k, v in phone_book.items():
 #     print(k, v.phone)
 
@@ -489,7 +489,7 @@ for i in dd:
 
 # def parse_phones(raw__p:list):
 #     tmp_p_list = []
-    
+
 #     for i in raw_p:
 #         tmp_p = Phone(i)
 #         tmp_p_list.append(tmp_p)
@@ -503,7 +503,7 @@ for i in dd:
 # b = g.append(phone3)
 # for i in t:
 #     print(i.value)
-# c = t + g 
+# c = t + g
 
 # for i in c:
 #     print(i.value)
@@ -524,3 +524,151 @@ for i in dd:
 
 # print(ss['1'])
 
+# class BankAccount:
+#     def __init__(self, balance):
+#         self.balance = balance
+
+#     def __add__(self, plus):
+#         x = self.balance + plus.balance
+#         return x
+
+# a = BankAccount(1024)
+# b = BankAccount(42)
+
+# result = a.balance + b.balance
+# print(result)
+# from random import randrange
+
+# ig = [[13123, 232313]]
+# if len(ig) == 1:
+#     ig = ig[0]
+# print(len(ig))
+# print(ig)
+# from datetime import date, datetime
+
+# current_datetime = datetime.now()
+
+# tmp_ff = '2019-07-04'
+
+# data_strip = tmp_ff.split("-")
+
+# ss = datetime(year=int(data_strip[0]), month=int(
+#     data_strip[1]), day=int(data_strip[2]))
+
+# print((current_datetime - ss).days)
+# print(current_datetime.month)
+
+# if int(data_strip[1]) < current_datetime.month:
+#     ss = datetime(year=current_datetime.year+1, month=int(
+#         data_strip[1]), day=int(data_strip[2])+1)
+#     print((ss - current_datetime).days)
+# elif int(data_strip[1]) == current_datetime.month:
+#     ss = datetime(year=current_datetime.year, month=int(
+#         data_strip[1]), day=int(data_strip[2])+1)
+#     if ss < current_datetime:
+#         ss = datetime(year=current_datetime.year+1, month=int(
+#             data_strip[1]), day=int(data_strip[2])+1)
+#         print((ss - current_datetime).days)
+#     else:
+#         print((ss - current_datetime).days)
+# else:
+#     ss = datetime(year=current_datetime.year, month=int(
+#         data_strip[1]), day=int(data_strip[2]))
+#     print((ss - current_datetime).days)
+
+# def interval_generator(x, y):
+#     while x <= y:
+#         yield x
+#         x += 1
+
+
+# five_to_ten_generator = interval_generator(5, 10)
+
+# for i in five_to_ten_generator:
+#     print(i)
+# def ex():
+#     return
+
+# COMMANDS = {ex: ["exit", ".", "bye"]}
+
+
+# def parse_command(user_input: str):
+#     for k, v in COMMANDS.items():
+#         for i in v:
+#             if user_input.lower().startswith(i.lower()):
+#                 return k, asd[len(i):].strip().split(" ")
+#     return "1", "2)"
+
+
+
+# tmp = 'sn sdf qe'
+# result, data = parse_command(tmp)
+# print(result)
+
+# import csv
+
+# FILENAME = 'users.csv'
+
+# users = [
+#     {'name': 'Николай', 'age': 22, 'gender': 'male'},
+#     {'name': 'Мария', 'age': 22, 'gender': 'female'},
+#     {'name': 'Назар', 'age': 22, 'gender': 'male'},
+# ]
+
+# with open(FILENAME, 'w', encoding='utf-8', newline='') as f:
+#     columns = users[0].keys()
+#     writer = csv.DictWriter(f, delimiter=',', fieldnames=columns)
+#     writer.writeheader()
+#     for row in users:
+#         writer.writerow(row)
+
+
+# with open(FILENAME, 'r', encoding='utf-8', newline='') as f:
+#     reader = csv.DictReader(f)
+
+#     for row in reader:
+#         print(row)
+
+# import os
+# from pathlib import Path
+
+# Path("/TestFolder").mkdir(parents=True, exist_ok=True)
+# import os
+# cwd = os.getcwd()
+
+# print(cwd)
+# ff = cwd + '\\db\\db'
+# print(ff)
+
+
+# from collections import UserDict
+# import pickle
+
+
+
+# class A:
+#     value = 12
+#     def __repr__(self) -> str:
+#         return f'да ну его нах !!! {self.value}'
+
+# a = A()
+# # class C(UserDict):
+# # filename = str(Path.cwd()) + '\\Temp_PY\\testpickle.dat'
+# filename = '.testpickle.dat'
+# print(filename)
+# with open(filename, 'wb') as db:
+#     pickle.dump(a,db)
+
+# with open(filename, 'rb') as dbr:
+#     rrr = pickle.load(dbr)
+
+# print(type(rrr))
+
+
+# mac = '00:1E:42:2A:0C:84'.replace(":", "")
+# print(mac)
+
+import sys
+
+
+print(sys.argv[0])

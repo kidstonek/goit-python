@@ -28,7 +28,7 @@ import collections
 Cat = collections.namedtuple("Cat", ["nickname", "age", "owner"])
 
 
-def convert_list(cats: {}):
+def convert_list(cats: list):
     answer_list = []
     if isinstance(cats[0], Cat): #проверяем является ли список экземпляром именованого списка
         result_data = {}
